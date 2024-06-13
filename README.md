@@ -2,7 +2,7 @@
 
 This is the web client for [atlas-chat](https://github.com/jordanos/atlas-chat-server) server.
 
-WEB DEMO [atlas-chat-web](https://atlas-chat-web.shegapps.com).
+WEB DEMO [atlas-chat](https://atlas-chat.shegapps.com).
 
 API DEMO [atlas-chat-api](https://atlas-chat-api.shegapps.com).
 
