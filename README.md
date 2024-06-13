@@ -2,6 +2,10 @@
 
 This is the web client for [atlas-chat](https://github.com/jordanos/atlas-chat-server) server.
 
+WEB DEMO [atlas-chat-web](https://atlas-chat-web.shegapps.com).
+
+API DEMO [atlas-chat-api](https://atlas-chat-api.shegapps.com).
+
 ## Quick Install
 
 We are using [pnpm](https://pnpm.io/) to manage our dependencies and we suggest you do the same.
