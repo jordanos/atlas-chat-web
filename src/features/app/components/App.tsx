@@ -4,6 +4,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import ModalProvider from 'components/CustomModal/ModalProvider';
 import { Toaster } from 'components/Toast';
+import { WS_URL } from 'constants/settings';
 import { MessageModel } from 'features/chat/models';
 import { FC, useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,7 +25,7 @@ const App: FC = () => {
   useEffect(() => {
     if (token === null) return;
 
-    const ws = new WebSocket(`ws://localhost:8000/ws/?token=${token}`);
+    const ws = new WebSocket(`${WS_URL}/?token=${token}`);
     wsRef.current = ws;
 
     ws.onopen = () => {
