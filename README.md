@@ -35,10 +35,14 @@ We are using [pnpm](https://pnpm.io/) to manage our dependencies and we suggest 
 
 ## Features
 
-- Authentication (Social auth)
-- Route guarding
-- Chatting playground
-- Dark and Light theme
+- Authentication
+- Real-time chat
+- Group/Private chats
+- Creating rooms, adding users in rooms
+
+## Known issues
+- Room status updates are not real-time
+- User status updates are not real-time
 
 ## 💁 Contributing
 
