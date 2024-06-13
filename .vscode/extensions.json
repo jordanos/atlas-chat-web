@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "csstools.postcss",
+    "orta.vscode-jest",
+    "editorconfig.editorconfig",
+    "wix.vscode-import-cost"
+  ]
+}

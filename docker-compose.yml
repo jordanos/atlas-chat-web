@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  web:
+    container_name: react-web
+    build: .
+    volumes:
+      - ./src:/app/src
+    ports:
+      - 3100:80
