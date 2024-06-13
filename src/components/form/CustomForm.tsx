@@ -5,13 +5,12 @@ import { FC, useMemo } from 'react';
 import {
   Control,
   SubmitHandler,
-  useForm,
   UseFormReset,
   UseFormSetError,
-  UseFormSetValue,
+  useForm,
 } from 'react-hook-form';
 import { getInitialValues } from 'utils/form';
-import { z, ZodTypeAny } from 'zod';
+import { ZodTypeAny, z } from 'zod';
 import {
   BaseFieldProps,
   CustomDateField,
@@ -30,15 +29,15 @@ export interface FormField extends BaseFieldProps {
   validation: ZodTypeAny;
   initValue: unknown;
   fieldType:
-    | 'Text'
-    | 'Password'
-    | 'Paragraph'
-    | 'Boolean'
-    | 'Choice'
-    | 'Date'
-    | 'Time'
-    | 'DateTime'
-    | 'Range';
+  | 'Text'
+  | 'Password'
+  | 'Paragraph'
+  | 'Boolean'
+  | 'Choice'
+  | 'Date'
+  | 'Time'
+  | 'DateTime'
+  | 'Range';
 }
 
 export interface OnSubmitProps {

@@ -10,9 +10,9 @@ import { logout, setAuth } from 'features/auth/userSlice';
 const noAuthEndpoints: string[] = ['login'];
 
 const dynamicBaseQuery: BaseQueryFn<
-  string | FetchArgs,
-  unknown,
-  FetchBaseQueryError
+string | FetchArgs,
+unknown,
+FetchBaseQueryError
 > = (args, api, extraOptions) => {
   const state = api.getState();
   const baseUrl = state.user.apiUrl;

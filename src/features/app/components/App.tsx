@@ -56,6 +56,7 @@ const App: FC = () => {
       dispatch(setWebSocket({ ws: null }));
     };
 
+    // eslint-disable-next-line consistent-return
     return () => {
       dispatch(setWebSocket({ ws: null }));
       ws.close();

@@ -31,6 +31,7 @@ const RoomCard: FC<RoomCardProps> = ({ room }) => {
     dispatch(setChat({ activeRoom: room }));
     const currentUrl = new URL(window.location);
     currentUrl.searchParams.set('room_id', room.id);
+    // eslint-disable-next-line no-restricted-globals
     history.pushState({}, '', currentUrl);
   };
 
