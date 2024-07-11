@@ -1,4 +1,4 @@
-export const parseFilterObj = (filters) => {
+export const parseFilterObj = (filters: any) => {
   let filtered = '';
   if (filters) {
     const keys = Object.keys(filters);
@@ -10,7 +10,7 @@ export const parseFilterObj = (filters) => {
   return filtered;
 };
 
-export const parseUrlQuery = (url, query) => {
+export const parseUrlQuery = (url: string, query: any) => {
   const { pagination, searchValue, filters } = query;
   const { pageIndex, pageSize } = pagination;
   const searchQuery = searchValue ? `&query=${searchValue}` : '';

@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { parseFilterObj } from 'utils/parsers';
 import useDebounce from 'hooks/useDebounce';
 import { usePagination } from 'hooks/usePagination';
+import { useState } from 'react';
+import { parseFilterObj } from 'utils/parsers';
 
 type ParamType = {
   filters?: object;
@@ -10,7 +10,10 @@ type ParamType = {
   refetchOnMountOrArgChange?: boolean;
 };
 
-const useGetPaginatedData = (useQuery, params: ParamType | null = null) => {
+const useGetPaginatedData = (
+  useQuery: any,
+  params: ParamType | null = null
+) => {
   const filters = params?.filters;
   const path = params?.path;
   const pagination = params?.pagination;
