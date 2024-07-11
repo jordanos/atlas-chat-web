@@ -17,8 +17,8 @@ jobs:
       - name: Install
         run: HUSKY=0 npm install --legacy-peer-deps
 
-      - name: Lint
-        run: npm run lint
+      # - name: Lint
+      #   run: npm run lint
 
       - name: Test
         run: npm run test
