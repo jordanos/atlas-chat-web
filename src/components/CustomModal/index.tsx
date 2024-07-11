@@ -1,8 +1,8 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, IconButton, Modal, Typography, useTheme } from '@mui/material';
-import { defaultPayload, ModalNames } from 'contexts/modalContext';
+import { ModalNames, defaultPayload } from 'contexts/modalContext';
 import { useModal } from 'hooks/useModal';
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import { ModalItemsContainer } from './styles';
 
 interface Props {
@@ -15,16 +15,16 @@ const CustomModal: FC<Props> = ({ modal, children, size }) => {
   const { modals, toggleModal, payload } = useModal();
   const theme = useTheme();
 
-  const childrenWithProps = React.Children.map(children, (child) => {
-    // Checking isValidElement is the safe way and avoids a
-    // typescript error too.
-    if (React.isValidElement(child)) {
-      return React.cloneElement(child, {
-        toggleModal: () => toggleModal(modal, defaultPayload),
-      });
-    }
-    return child;
-  });
+  // TODO: Passing parent props to each child
+  // const childrenWithProps = React.Children.map(children, (child) => {
+  //   // Checking isValidElement is the safe way and avoids a
+  //   // typescript error too.
+  //   if (React.isValidElement(child)) {
+  //     return React.cloneElement(child);
+  //   }
+  //   return child;
+  // });
+
   return (
     <Modal
       sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
@@ -68,9 +68,7 @@ const CustomModal: FC<Props> = ({ modal, children, size }) => {
           sx={{ width: size === 'small' ? '40rem' : '96vw' }}
         >
           <Box style={{ display: 'inline-block', minWidth: '100%' }}>
-            <Box sx={{ px: { xs: 1, md: 2 }, py: 1, pb: 4 }}>
-              {childrenWithProps}
-            </Box>
+            <Box sx={{ px: { xs: 1, md: 2 }, py: 1, pb: 4 }}>{children}</Box>
           </Box>
         </ModalItemsContainer>
       </Box>

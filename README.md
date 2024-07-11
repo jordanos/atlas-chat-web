@@ -41,6 +41,7 @@ We are using [pnpm](https://pnpm.io/) to manage our dependencies and we suggest 
 - Creating rooms, adding users in rooms
 
 ## Known issues
+
 - Room status updates are not real-time
 - User status updates are not real-time
 
