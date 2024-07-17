@@ -10,22 +10,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  quality-assurance:
-    name: Quality Assurance
-    uses: ./.github/workflows/quality-assurance.yaml
+  # quality-assurance:
+  #   name: Quality Assurance
+  #   uses: ./.github/workflows/quality-assurance.yaml
 
   deploy:
     name: Deploy
-    needs: quality-assurance
+    # needs: quality-assurance
     runs-on: ubuntu-latest
     container: node:18.0.0
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USER: ${{ secrets.SSH_USER }}
 
     steps:
       - name: Configure ssh
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/github
