@@ -10,24 +10,38 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # quality-assurance:
-  #   name: Quality Assurance
-  #   uses: ./.github/workflows/quality-assurance.yaml
+  quality-assurance:
+    name: Quality Assurance
+    uses: ./.github/workflows/quality-assurance.yaml
 
   deploy:
     name: Deploy
-    # needs: quality-assurance
+    needs: quality-assurance
     runs-on: ubuntu-latest
     env:
+      API_URL: ${{ secrets.API_URL }}
+      WS_URL: ${{ secrets.WS_URL }}
+      SYSTEM_PROVIDER_NAME: ${{ secrets.SYSTEM_PROVIDER_NAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USER: ${{ secrets.SSH_USER }}
 
     steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
+
+      - name: Build project
+        run: |
+          echo -e "VITE_DEBUG=false \nVITE_API_URL="$API_URL" \nVITE_WS_URL="$WS_URL" \nVITE_SYSTEM_PROVIDER_NAME="$SYSTEM_PROVIDER_NAME"" > ./env/.env.production.local
+          HUSKY=0 npm install --legacy-peer-deps
+          npm run build:production
+          tar -cvf dist.tar ./dist
+
       - name: Configure ssh
         run: |
           mkdir -p ~/.ssh/
@@ -44,4 +58,7 @@ jobs:
 
       - name: Run deploy
         run: |
-          ssh target "cd ~ && touch sample.txt"
+          scp dist.tar target:/usr/share/nginx/atlas-chat/atlas-chat-web/
+          echo "Dist copied to server"
+          ssh target "cd /usr/share/nginx/atlas-chat/atlas-chat-web/ && tar -xvf dist.tar && rm dist.tar&&systemctl reload nginx && exit"
+          echo "Deployed!"
