@@ -21,18 +21,6 @@ jobs:
     container: node:18.0.0
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Build project
-        env:
-          API_URL: ${{ secrets.API_URL }}
-          WS_URL: ${{ secrets.WS_URL }}
-          SYSTEM_PROVIDER_NAME: ${{ secrets.SYSTEM_PROVIDER_NAME }}
-        run: |
-          echo -e "VITE_DEBUG=false \nVITE_API_URL="$API_URL" \nVITE_WS_URL="$WS_URL" \nVITE_SYSTEM_PROVIDER_NAME="$SYSTEM_PROVIDER_NAME"" > ./env/.env.production.local
-          HUSKY=0 npm install --legacy-peer-deps
-          npm run build:production
-          tar -cvf dist.tar ./dist
-
       - name: Configure ssh
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
